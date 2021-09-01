@@ -10,7 +10,7 @@ public class FracCalc {
 
     /**
      * Runs a fraction calculator.
-     * IYGASLUIFHAISUHFUAISFLA
+     * 
      * @param args Not used
      */
     public static void main(String[] args) 
