@@ -3,14 +3,14 @@ import java.util.*;
 /**
  * Calculates fractions.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * Nathan Zhang
+ * 9/1
  */
 public class FracCalc {
 
     /**
      * Runs a fraction calculator.
-     * 
+     * IYGASLUIFHAISUHFUAISFLA
      * @param args Not used
      */
     public static void main(String[] args) 
