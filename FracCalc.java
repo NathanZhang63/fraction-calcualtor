@@ -34,9 +34,46 @@ public class FracCalc {
     public static String produceAnswer(String input)
     { 
         // TODO: Implement this function to produce the solution to the input
-        String st
+        String input1 = "";
+        String operand = "";
+        String input2 = "";
+        int counter =0;
+        int var1 = 0;
+        String XD = "";
+        for(int i=0; i< input.length(); i++){
+            if(input.substring(i,i + 1).equals(" ")){
+                XD=input.substring(i+3);
+                break;
+            }
+         
+        }
+        return XD;
+        /*for(int i = 0; i < input.length(); i++) {
+            if(counter ==0){
+                if(input.charAt(i) == '+') {
+                    operand = "+";
+                    counter = 1;
+                }
+                if(input.charAt(i) == '-') {
+                    operand = "-";
+                    counter = 1;
+                }
+                if(input.charAt(i) == '*') {
+                    operand = "*";
+                    counter = 1;
+                }
+                if(input.substring(i-1, i+2).equals(" / ")) {
+                    operand = "/";
+                    counter = 1;
+                }
+                else{
+                input1+=input.substring(i, i+1);
+                }
+            }
+            }*/
 
-        return "";
+        
+
     }
 
     // TODO: Fill in the space below with any helper methods
@@ -58,4 +95,5 @@ public class FracCalc {
     }
 
 }
+
 
