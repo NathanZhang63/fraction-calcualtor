@@ -20,25 +20,9 @@ public class FracCalc {
         System.out.println(produceAnswer(inputLine));
     }
 
-    /**
-     * ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.
-     * This function will be used to test your code
-     * This function takes a String 'input' and produces the result
-     * 
-     * @param input A fraction string that needs to be evaluated.
-     * For your program, this will be the user input.
-     *     e.g. input ==> "1/2 + 3/4"
-     * @return The result of the fraction after it has been calculated
-     *     e.g. return ==> "1_1/4"
-     */
     public static String produceAnswer(String input)
     { 
-        // TODO: Implement this function to produce the solution to the input
-        String input1 = "";
-        String operand = "";
-        String input2 = "";
-        int counter =0;
-        int var1 = 0;
+        // finds the second operand
         String XD = "";
         for(int i=0; i< input.length(); i++){
             if(input.substring(i,i + 1).equals(" ")){
@@ -47,30 +31,48 @@ public class FracCalc {
             }
          
         }
-        return XD;
-        /*for(int i = 0; i < input.length(); i++) {
-            if(counter ==0){
-                if(input.charAt(i) == '+') {
-                    operand = "+";
-                    counter = 1;
-                }
-                if(input.charAt(i) == '-') {
-                    operand = "-";
-                    counter = 1;
-                }
-                if(input.charAt(i) == '*') {
-                    operand = "*";
-                    counter = 1;
-                }
-                if(input.substring(i-1, i+2).equals(" / ")) {
-                    operand = "/";
-                    counter = 1;
-                }
-                else{
-                input1+=input.substring(i, i+1);
+        // returns each thingy
+        String whole = "0";
+        String numerator = "0";
+        String denominator =  "1";
+        int var1=0;
+        // MIXED NUMBER
+        if(XD.contains("_")==true){
+          for(int i=0; i <XD.length(); i++){
+            if(XD.substring(i,i+1).equals("_")){
+              var1 = i;
+              whole = XD.substring(0,i);
+            }
+          }
+          for(int j=var1; j<XD.length(); j++){
+              if(XD.substring(j, j+1).equals("/")){
+                  numerator = XD.substring(var1+1, j);
+                  denominator = XD.substring(j+1);
+                  }
+          }
+
+         
+        }
+        // JUST FRACTION OR WHOLE NUMBER
+        else{
+          if(XD.contains("/") == true){
+              for(int i=0; i<XD.length(); i++){
+                  if(XD.substring(i, i+1).equals("/")){
+                      numerator = XD.substring(0, i);
+                      denominator = XD.substring(i+1);
+                   
+                  }
                 }
             }
-            }*/
+          else{
+              whole = XD;
+              numerator = "0";
+              denominator = "1";
+            }
+        }
+        return "whole:"+whole+" numerator:"+numerator+" denominator:"+denominator;
+   
+        
 
         
 
@@ -85,14 +87,14 @@ public class FracCalc {
      * @param q second int
      * @return The GCF
      */
-    public static int gcf(int p, int q) {
+    /* public static int gcf(int p, int q) {
         while (q != 0) {
             int temp = q;
             q = p % q;
             p = temp;
         }
         return p;
-    }
+    } */
 
 }
 
