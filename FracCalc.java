@@ -70,8 +70,65 @@ public class FracCalc {
               denominator = "1";
             }
         }
-        return "whole:"+whole+" numerator:"+numerator+" denominator:"+denominator;
-   
+        //FINDING FIRST THINGY
+        String XD1 = "";
+        for(int i=0; i< input.length(); i++){
+            if(input.substring(i,i + 1).equals(" ")){
+                XD1=input.substring(0, i);
+                break;
+            }
+         
+        }
+        // returns each thingy
+        String whole2 = "0";
+        String numerator2 = "0";
+        String denominator2 =  "1";
+        int var2=0;
+        // MIXED NUMBER
+        if(XD1.contains("_")==true){
+          for(int i=0; i <XD1.length(); i++){
+            if(XD1.substring(i,i+1).equals("_")){
+              var1 = i;
+              whole2 = XD1.substring(0,i);
+            }
+          }
+          for(int j=var1; j<XD1.length(); j++){
+              if(XD.substring(j, j+1).equals("/")){
+                  numerator2 = XD1.substring(var1+1, j);
+                  denominator2 = XD1.substring(j+1);
+                  }
+          }
+
+         
+        }
+        // JUST FRACTION OR WHOLE NUMBER
+        else{
+          if(XD.contains("/") == true){
+              for(int i=0; i<XD1.length(); i++){
+                  if(XD.substring(i, i+1).equals("/")){
+                      numerator2 = XD1.substring(0, i);
+                      denominator2 = XD1.substring(i+1);
+                   
+                  }
+                }
+            }
+          else{
+              whole2 = XD1;
+              numerator2 = "0";
+              denominator2 = "1";
+            }
+        }
+        String wholeofAll = "";
+        String numeratorofBoth = "";
+        if(denominator == denominator2){
+            return XD;
+        }
+        else if(denominator
+        
+        
+        
+        return "whole:"+whole2+" numerator:"+numerator2+" denominator:"+denominator2;
+        
         
 
         
