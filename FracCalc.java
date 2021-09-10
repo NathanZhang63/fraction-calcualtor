@@ -93,7 +93,7 @@ public class FracCalc {
             }
           }
           for(int j=var1; j<XD1.length(); j++){
-              if(XD.substring(j, j+1).equals("/")){
+              if(XD1.substring(j, j+1).equals("/")){
                   numerator2 = XD1.substring(var1+1, j);
                   denominator2 = XD1.substring(j+1);
                   }
@@ -118,16 +118,49 @@ public class FracCalc {
               denominator2 = "1";
             }
         }
-        String wholeofAll = "";
-        String numeratorofBoth = "";
-        if(denominator == denominator2){
-            return XD;
+        int wholeofAll = 0;
+        int numeratorofBoth = 0;
+        int denominatorofBoth = 0;
+        int numeratorofFirst;
+        int denominatorofFirst = 1;
+        String operand = "";
+        if(whole !=
+        for(int i=0; i< input.length(); i++){
+            if(input.substring(i,i + 1).equals(" ")){
+                operand=input.substring(i+1,i+2);
+                break;
+            }
+         
         }
-        else if(denominator
+        if(operand.equals("+")){
+            
+        }
+        else if(operand.equals("-")){
+            
+        }
+        else if(operand.equals("*")){
+            wholeofAll = Integer.parseInt(whole) * Integer.parseInt(whole2);
+            numeratorofBoth = Integer.parseInt(numerator) * Integer.parseInt(numerator2);
+            denominatorofBoth = Integer.parseInt(denominator) * Integer.parseInt(denominator2);
+            
+        }
+        else{
+            
+        }
+        if(wholeofAll == 0){
+            if(numeratorofBoth == 0){
+                return "0";
+            }
+            return numeratorofBoth + "/" + denominatorofBoth;
+        }
+        else if(numeratorofBoth == 0){
+            return "" + wholeofAll;
+        }
+        return wholeofAll + "_" + numeratorofBoth + "/" + denominatorofBoth;
         
         
         
-        return "whole:"+whole2+" numerator:"+numerator2+" denominator:"+denominator2;
+        
         
         
 
