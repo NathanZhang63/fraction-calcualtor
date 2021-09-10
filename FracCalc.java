@@ -124,7 +124,12 @@ public class FracCalc {
         int numeratorofFirst;
         int denominatorofFirst = 1;
         String operand = "";
-        if(whole !=
+        if(whole != "0"){
+            
+        }
+        if(whole2 != "0"){
+            
+        }
         for(int i=0; i< input.length(); i++){
             if(input.substring(i,i + 1).equals(" ")){
                 operand=input.substring(i+1,i+2);
