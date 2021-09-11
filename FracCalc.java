@@ -32,22 +32,22 @@ public class FracCalc {
          
         }
         // returns each thingy
-        String whole = "0";
-        String numerator = "0";
-        String denominator =  "1";
+        String whole2 = "0";
+        String numerator2 = "0";
+        String denominator2 =  "1";
         int var1=0;
         // MIXED NUMBER
         if(secondPart.contains("_")==true){
           for(int i=0; i <secondPart.length(); i++){
             if(secondPart.substring(i,i+1).equals("_")){
               var1 = i;
-              whole = secondPart.substring(0,i);
+              whole2 = secondPart.substring(0,i);
             }
           }
           for(int j=var1; j<secondPart.length(); j++){
               if(secondPart.substring(j, j+1).equals("/")){
-                  numerator = secondPart.substring(var1+1, j);
-                  denominator = secondPart.substring(j+1);
+                  numerator2 = secondPart.substring(var1+1, j);
+                  denominator2 = secondPart.substring(j+1);
                   }
           }
 
@@ -58,16 +58,16 @@ public class FracCalc {
           if(secondPart.contains("/") == true){
               for(int i=0; i<secondPart.length(); i++){
                   if(secondPart.substring(i, i+1).equals("/")){
-                      numerator = secondPart.substring(0, i);
-                      denominator = secondPart.substring(i+1);
+                      numerator2 = secondPart.substring(0, i);
+                      denominator2 = secondPart.substring(i+1);
                    
                   }
                 }
             }
           else{
-              whole = secondPart;
-              numerator = "0";
-              denominator = "1";
+              whole2 = secondPart;
+              numerator2 = "0";
+              denominator2 = "1";
             }
         }
         //FINDING FIRST PART I.e 1/2 + 2/3, returns 1/2
@@ -80,22 +80,22 @@ public class FracCalc {
          
         }
         // returns each part of the first part ie 1/2 : 1, 2
-        String whole2 = "0";
-        String numerator2 = "0";
-        String denominator2 =  "1";
+        String whole1 = "0";
+        String numerator1 = "0";
+        String denominator1 =  "1";
         int var2=0;
         // MIXED NUMBER
         if(firstPart.contains("_")==true){
           for(int i=0; i <firstPart.length(); i++){
             if(firstPart.substring(i,i+1).equals("_")){
               var1 = i;
-              whole2 = firstPart.substring(0,i);
+              whole1 = firstPart.substring(0,i);
             }
           }
           for(int j=var1; j<firstPart.length(); j++){
               if(firstPart.substring(j, j+1).equals("/")){
-                  numerator2 = firstPart.substring(var1+1, j);
-                  denominator2 = firstPart.substring(j+1);
+                  numerator1 = firstPart.substring(var1+1, j);
+                  denominator1 = firstPart.substring(j+1);
                   }
           }
 
@@ -107,20 +107,20 @@ public class FracCalc {
               for(int i=0; i<firstPart.length(); i++){
                   if(firstPart.substring(i, i+1).equals("/")){
 
-                      numerator2 = firstPart.substring(0, i);
-                      denominator2 = firstPart.substring(i+1);
+                      numerator1 = firstPart.substring(0, i);
+                      denominator1 = firstPart.substring(i+1);
                    
                   }
                 }
             }
           else{
-              whole2 = firstPart;
-              numerator2 = "0";
-              denominator2 = "1";
+              whole1 = firstPart;
+              numerator1 = "0";
+              denominator1 = "1";
             }
         }
         String marcoiscringe = "";
-        int numeratorofFirst= Integer.parseInt(numerator);
+        int numeratorofFirst= Integer.parseInt(numerator1);
         int numeratorofSecond = Integer.parseInt(numerator2);
         String operand = "";
         for(int i=0; i< input.length(); i++){
@@ -130,19 +130,73 @@ public class FracCalc {
             }
          
         }
-        if(whole != "0"){
-            numeratorofFirst = improperFraction(whole, numerator, denominator);
+        if(whole1 != "0"){
+            numeratorofFirst = improperFraction(whole1, numerator1, denominator1);
         }
         if(whole2 != "0"){
             numeratorofSecond = improperFraction(whole2, numerator2, denominator2);
         }
         if(operand.equals("*")){
-            marcoiscringe = multiply(numeratorofFirst, numeratorofSecond, denominator, denominator2);
+            marcoiscringe = multiply(numeratorofFirst, numeratorofSecond, denominator1, denominator2);
         }
         if(operand.equals("/")){
-            marcoiscringe = divide(numeratorofFirst, numeratorofSecond, denominator, denominator2);
+            marcoiscringe = divide(numeratorofFirst, numeratorofSecond, denominator1, denominator2);
         }
-        return marcoiscringe;
+        if(operand.equals("+")){
+            marcoiscringe = plus(numeratorofFirst, numeratorofSecond, denominator1, denominator2);
+        }
+        if(operand.equals("-")){
+            marcoiscringe = minus(numeratorofFirst, numeratorofSecond, denominator1, denominator2);
+        }
+        // SPLITS MARCOISCRINGE INTO 2 THINGS
+        String numerator3_string = "";
+        String denominator3_string = "";
+        int numerator3 = 0;
+        int denominator3 = 0;
+        for(int i=0; i< marcoiscringe.length(); i++){
+            if(marcoiscringe.substring(i,i + 1).equals(" ")){
+                denominator3_string =marcoiscringe.substring(i+1);
+                numerator3_string =marcoiscringe.substring(0, i);
+                break;
+            }
+         
+        }
+        numerator3 = Integer.parseInt(numerator3_string);
+        denominator3 = Integer.parseInt(denominator3_string);
+        int finalWhole = 0;
+        if(numerator3 > denominator3){
+            finalWhole = numerator3/denominator3;
+            numerator3 = numerator3 % denominator3;
+            if(numerator3 <0){
+                numerator3 *= -1;
+            }
+        }
+        else if(numerator3 == denominator3){
+            return "1";
+        }
+        int Gcf = gcf(numerator3, denominator3);
+        if(Gcf <0){
+            Gcf *= -1;
+        }
+        if(gcf(numerator3, denominator3) != 1){
+            // System.out.println(Gcf + " " + denominator3 + " " +numerator3);
+            numerator3 = numerator3 / Gcf;
+            denominator3 = denominator3 / Gcf;
+            // System.out.println(Gcf + " " + denominator3 + " " +numerator3);
+        }
+        
+        if(finalWhole != 0){
+            if(finalWhole < 0){
+                if(numerator3 < 0){
+                    numerator3 *= -1;
+                }
+                else if(denominator3 < 0){
+                    denominator3 *= -1;
+                }
+            }
+            return finalWhole + "_" + numerator3 + "/" + denominator3;
+        }
+        return numerator3 + "/" + denominator3;
         
         
         
@@ -152,30 +206,40 @@ public class FracCalc {
         
 
     }
+        // TODO: Fill in the space below with any helper methods
+
     // CHANGE MIXED NUMBER TO IMPROPER FRACTION
     public static int improperFraction(String whole, String numerator, String denominator){
+        if(whole.contains("-") == true){
+            return Integer.parseInt(whole) * Integer.parseInt(denominator) - Integer.parseInt(numerator);
+        }
         int numeratornice = Integer.parseInt(whole) * Integer.parseInt(denominator) + Integer.parseInt(numerator);
         return numeratornice;
     }
-    public static String plus(String numerator, String denominator, String numerator2,String denominator2){
-        return "";
+    public static String plus(int numeratorofFirst, int numeratorofSecond, String denominator1,String denominator2){
+        int Combinednumerator = (numeratorofFirst * Integer.parseInt((denominator2)) + (numeratorofSecond * Integer.parseInt((denominator1))));
+        int Combineddenominator = (Integer.parseInt(denominator1) * Integer.parseInt(denominator2));
+        return Combinednumerator + " " + Combineddenominator;
     }
-    public static String minus(String numerator, String denominator, String numerator2,String denominator2){
-        return "";
+    public static String minus(int numeratorofFirst, int numeratorofSecond, String denominator1,String denominator2){
+        int Combinednumerator = (numeratorofFirst * Integer.parseInt((denominator2)) - (numeratorofSecond * Integer.parseInt((denominator1))));
+        int Combineddenominator = (Integer.parseInt(denominator1) * Integer.parseInt(denominator2));
+        return Combinednumerator + " " + Combineddenominator;
     }
-    public static String multiply(int numeratorofFirst, int numeratorofSecond, String denominator,String denominator2){
+    public static String multiply(int numeratorofFirst, int numeratorofSecond, String denominator1,String denominator2){
         int Combinednumerator = numeratorofFirst * numeratorofSecond;
-        int Combineddenominator = Integer.parseInt(denominator) * Integer.parseInt(denominator2);
-        return Combinednumerator + " / " + Combineddenominator;
+        int Combineddenominator = Integer.parseInt(denominator1) * Integer.parseInt(denominator2);
+        // System.out.println(Combinednumerator + " " + Combineddenominator);
+
+        return Combinednumerator + " " + Combineddenominator;
         
     }
-    public static String divide(int numeratorofFirst, int numeratorofSecond, String denominator,String denominator2){
-        int Combinednumerator = numeratorofFirst / numeratorofSecond;
-        int Combineddenominator = Integer.parseInt(denominator) / Integer.parseInt(denominator2);
-        return Combinednumerator + " / " + Combineddenominator;
+    public static String divide(int numeratorofFirst, int numeratorofSecond, String denominator1,String denominator2){
+        int Combinednumerator = numeratorofFirst * Integer.parseInt(denominator2);
+        int Combineddenominator = numeratorofSecond * Integer.parseInt(denominator1);
+        return Combinednumerator + " " + Combineddenominator;
     }
-
-    // TODO: Fill in the space below with any helper methods
+    
 
     /**
      * GCF
