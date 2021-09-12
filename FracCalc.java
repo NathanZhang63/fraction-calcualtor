@@ -1,9 +1,10 @@
 import java.util.*; 
-
+import java.lang.Math;
 /**
  * Calculates fractions.
  *
  * Nathan Zhang
+ * Nathan Liu
  * 9/1
  */
 public class FracCalc {
@@ -161,10 +162,11 @@ public class FracCalc {
             }
          
         }
+        // TURNS INTO MIXED NUMBER
         numerator3 = Integer.parseInt(numerator3_string);
         denominator3 = Integer.parseInt(denominator3_string);
         int finalWhole = 0;
-        if(numerator3 > denominator3){
+        if(Math.abs(numerator3) > Math.abs(denominator3)){
             finalWhole = numerator3/denominator3;
             numerator3 = numerator3 % denominator3;
             if(numerator3 <0){
@@ -174,6 +176,7 @@ public class FracCalc {
         else if(numerator3 == denominator3){
             return "1";
         }
+        // GCF (SIMPLIFYING FRACTIONS)
         int Gcf = gcf(numerator3, denominator3);
         if(Gcf <0){
             Gcf *= -1;
@@ -182,30 +185,64 @@ public class FracCalc {
             // System.out.println(Gcf + " " + denominator3 + " " +numerator3);
             numerator3 = numerator3 / Gcf;
             denominator3 = denominator3 / Gcf;
+            
             // System.out.println(Gcf + " " + denominator3 + " " +numerator3);
         }
         
-        if(finalWhole != 0){
-            if(finalWhole < 0){
-                if(numerator3 < 0){
+        // FIXES WHAT THE SIGN IS FOR NEGATIVES AND MULTIPLICATION
+        if(operand.equals("/")){
+            numerator3 = Math.abs(numerator3);
+            denominator3 = Math.abs(denominator3);
+            finalWhole = Math.abs(finalWhole);
+            System.out.println(numerator3 + " " + denominator3 + " " + countNegatives(input) + " " + finalWhole);
+            if(countNegatives(input) == 1){
+                if(finalWhole != 0){
+                    finalWhole *= -1;
+                }
+                else{
                     numerator3 *= -1;
                 }
-                else if(denominator3 < 0){
-                    denominator3 *= -1;
+            }
+        }
+        if(operand.equals("*")){
+            numerator3 = Math.abs(numerator3);
+            denominator3 = Math.abs(denominator3);
+            finalWhole = Math.abs(finalWhole);
+            System.out.println(numerator3 + " " + denominator3 + " " + countNegatives(input) + " " + finalWhole);
+            if(countNegatives(input) == 1){
+                if(finalWhole != 0){
+                    finalWhole *= -1;
                 }
+                else{
+                    numerator3 *= -1;
+                }
+            }
+        }
+        
+        
+        if(finalWhole != 0){
+            if(numerator3 ==0){
+                return "" + finalWhole;
             }
             return finalWhole + "_" + numerator3 + "/" + denominator3;
         }
+        if(numerator3 == 0){
+            return "0";
+        }
+        if(denominator3 == 1){
+            return "" + numerator3;
+        }
+        
         return numerator3 + "/" + denominator3;
         
         
         
         
-        
-
+    
         
 
     }
+
         // TODO: Fill in the space below with any helper methods
 
     // CHANGE MIXED NUMBER TO IMPROPER FRACTION
@@ -230,14 +267,24 @@ public class FracCalc {
         int Combinednumerator = numeratorofFirst * numeratorofSecond;
         int Combineddenominator = Integer.parseInt(denominator1) * Integer.parseInt(denominator2);
         // System.out.println(Combinednumerator + " " + Combineddenominator);
-
-        return Combinednumerator + " " + Combineddenominator;
+        
+        return Math.abs(Combinednumerator) + " " + Math.abs(Combineddenominator);
         
     }
     public static String divide(int numeratorofFirst, int numeratorofSecond, String denominator1,String denominator2){
         int Combinednumerator = numeratorofFirst * Integer.parseInt(denominator2);
         int Combineddenominator = numeratorofSecond * Integer.parseInt(denominator1);
         return Combinednumerator + " " + Combineddenominator;
+    }
+    public static int countNegatives(String input){
+        int count = 0;
+        for(int i=0; i< input.length(); i++){
+            if(input.substring(i,i + 1).equals("-")){
+                count++;
+            }
+         
+        }
+        return count;
     }
     
 
