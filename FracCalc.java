@@ -178,9 +178,7 @@ public class FracCalc {
         }
         // GCF (SIMPLIFYING FRACTIONS)
         int Gcf = gcf(numerator3, denominator3);
-        if(Gcf <0){
-            Gcf *= -1;
-        }
+        
         if(gcf(numerator3, denominator3) != 1){
             // System.out.println(Gcf + " " + denominator3 + " " +numerator3);
             numerator3 = numerator3 / Gcf;
@@ -190,7 +188,7 @@ public class FracCalc {
         }
         
         // FIXES WHAT THE SIGN IS FOR NEGATIVES AND MULTIPLICATION, SIGNS GEt SCUFFED DURING MULTIPLYING AND DIVIDING
-        if(operand.equals("/")){
+        if(operand.equals("/") || operand.equals("*")){
             numerator3 = Math.abs(numerator3);
             denominator3 = Math.abs(denominator3);
             finalWhole = Math.abs(finalWhole);
@@ -204,20 +202,8 @@ public class FracCalc {
                 }
             }
         }
-        if(operand.equals("*")){
-            numerator3 = Math.abs(numerator3);
-            denominator3 = Math.abs(denominator3);
-            finalWhole = Math.abs(finalWhole);
-            // System.out.println(numerator3 + " " + denominator3 + " " + countNegatives(input) + " " + finalWhole);
-            if(countNegatives(input) == 1){
-                if(finalWhole != 0){
-                    finalWhole *= -1;
-                }
-                else{
-                    numerator3 *= -1;
-                }
-            }
-        }
+    
+        
         
         
         if(finalWhole != 0){
@@ -287,7 +273,6 @@ public class FracCalc {
         return count;
     }
     
-
     /**
      * GCF
      * 
