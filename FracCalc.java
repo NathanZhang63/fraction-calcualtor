@@ -189,12 +189,12 @@ public class FracCalc {
             // System.out.println(Gcf + " " + denominator3 + " " +numerator3);
         }
         
-        // FIXES WHAT THE SIGN IS FOR NEGATIVES AND MULTIPLICATION
+        // FIXES WHAT THE SIGN IS FOR NEGATIVES AND MULTIPLICATION, SIGNS GEt SCUFFED DURING MULTIPLYING AND DIVIDING
         if(operand.equals("/")){
             numerator3 = Math.abs(numerator3);
             denominator3 = Math.abs(denominator3);
             finalWhole = Math.abs(finalWhole);
-            System.out.println(numerator3 + " " + denominator3 + " " + countNegatives(input) + " " + finalWhole);
+            // System.out.println(numerator3 + " " + denominator3 + " " + countNegatives(input) + " " + finalWhole);
             if(countNegatives(input) == 1){
                 if(finalWhole != 0){
                     finalWhole *= -1;
@@ -208,7 +208,7 @@ public class FracCalc {
             numerator3 = Math.abs(numerator3);
             denominator3 = Math.abs(denominator3);
             finalWhole = Math.abs(finalWhole);
-            System.out.println(numerator3 + " " + denominator3 + " " + countNegatives(input) + " " + finalWhole);
+            // System.out.println(numerator3 + " " + denominator3 + " " + countNegatives(input) + " " + finalWhole);
             if(countNegatives(input) == 1){
                 if(finalWhole != 0){
                     finalWhole *= -1;
@@ -268,7 +268,7 @@ public class FracCalc {
         int Combineddenominator = Integer.parseInt(denominator1) * Integer.parseInt(denominator2);
         // System.out.println(Combinednumerator + " " + Combineddenominator);
         
-        return Math.abs(Combinednumerator) + " " + Math.abs(Combineddenominator);
+        return Combinednumerator + " " + Combineddenominator;
         
     }
     public static String divide(int numeratorofFirst, int numeratorofSecond, String denominator1,String denominator2){
